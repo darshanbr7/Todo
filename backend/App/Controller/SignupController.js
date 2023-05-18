@@ -5,6 +5,15 @@ const SignupController={}
 SignupController.home=(req,res)=>{
     res.json("Welcome to HomePage")
 }
+SignupController.list=(req,res)=>{
+    UserDB.find()
+            .then((data)=>{
+                res.json(data)
+            })
+            .catch((e)=>{
+                res.json(e.message)
+            })
+}
 SignupController.register=(req,res)=>{
     const body=req.body
     const user=new UserDB(body)
