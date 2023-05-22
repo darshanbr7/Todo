@@ -1,4 +1,4 @@
-const UserDB=require("../../Model/Signup")
+const UserDB=require("../../Model/Signup/Signup")
 
 
 const SignupController={}

@@ -1,4 +1,4 @@
-const UserDB=require("../../Model/Signup")
+const UserDB=require("../../Model/Signup/Signup")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 const logincontroller={}
@@ -22,7 +22,7 @@ logincontroller.login=(req,res)=>{
                           const genToken=  jwt.sign(token,"darshan123",{expiresIn:"2d"})
     
                           res.json({
-                            token:genToken
+                            token: ` ${genToken}`
                           })
                        
                       }else{

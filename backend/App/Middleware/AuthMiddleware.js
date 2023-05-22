@@ -1,5 +1,7 @@
 
 const bcrypt=require("bcrypt")
+const { json } = require("body-parser")
+const jwt=require("jsonwebtoken")
 const authMiddleware={}
 
 authMiddleware.preregister=(req,res,next)=>{
@@ -21,5 +23,24 @@ authMiddleware.preregister=(req,res,next)=>{
           })
 
 
+}
+
+authMiddleware.auth=(req,res,next)=>{
+   
+    
+    let token = req.headers.authorization;
+   // const token = req.header('Authorization')
+    
+    console.log(typeof(token))
+    if(!token){
+     res.status(400).json({error:" Access Denied /unauthorized request"})
+    }
+    const tokendata=jwt.verify(token,"darshan123")
+    if(tokendata){
+       req.user=tokendata
+       next()
+    }else{
+        res.status(400).json({error:"un Authorized request"})
+    }
 }
 module.exports=authMiddleware
