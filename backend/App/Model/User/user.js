@@ -1,7 +1,7 @@
 const mongoose=require("mongoose")
 const isEmail=require("validator/lib/isEmail")
 const Schema=mongoose.Schema
-const User=new Schema({
+const UserDB=new Schema({
     username:{
         type:String,
         unique:true,
@@ -27,6 +27,6 @@ const User=new Schema({
     }
 })
 
- const UserDB=mongoose.model("UserDB",User)
+ const User=mongoose.model("User",UserDB)
 
- module.exports=UserDB
+ module.exports=User

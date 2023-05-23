@@ -1,12 +1,12 @@
-const UserDB=require("../../Model/Signup/Signup")
+const User=require("../../Model/User/user")
 
 
-const SignupController={}
-SignupController.home=(req,res)=>{
+const UserController={}
+UserController.home=(req,res)=>{
     res.json("Welcome to HomePage")
 }
-SignupController.list=(req,res)=>{
-    UserDB.find()
+UserController.list=(req,res)=>{
+    User.find()
             .then((data)=>{
                 res.json(data)
             })
@@ -14,9 +14,9 @@ SignupController.list=(req,res)=>{
                 res.json(e.message)
             })
 }
-SignupController.register=(req,res)=>{
+UserController.register=(req,res)=>{
     const data=req.info
-    const user=new UserDB(data)
+    const user=new User(data)
        user.save()
            .then((user)=>{
             res.json(user)
@@ -25,9 +25,9 @@ SignupController.register=(req,res)=>{
             res.json(e)
            })
 }
-SignupController.findbyname=(req,res)=>{
+UserController.findbyname=(req,res)=>{
     const name=req.params.name
-    UserDB.findOne({username:name})
+    User.findOne({username:name})
             .then((user)=>{
                 res.json(user)
             })
@@ -35,10 +35,10 @@ SignupController.findbyname=(req,res)=>{
                 res.json(e.message)
             })
 }
-SignupController.updatebyname=(req,res)=>{
+UserController.updatebyname=(req,res)=>{
     const body=req.body
     const name=req.params.name
-    UserDB.findOneAndUpdate({username:name},body,{new:true,runValidators:true})
+    User.findOneAndUpdate({username:name},body,{new:true,runValidators:true})
           .then((user)=>{
             res.json(user)
           })
@@ -46,15 +46,15 @@ SignupController.updatebyname=(req,res)=>{
             res.json(err.message)
           })
 }
-SignupController.deletebyname=(req,res)=>{
+UserController.deletebyname=(req,res)=>{
     const name=req.params.name
-    UserDB.findOneAndDelete({username:name})
+    User.findOneAndDelete({username:name})
             .then((user)=>{
                 res.json(user)
             })
             .catch((error)=>{
-                res.json(e.message)
+                res.json(error.message)
             })
 }
 
-module.exports=SignupController
+module.exports=UserController

@@ -1,11 +1,11 @@
-const UserDB=require("../../Model/Signup/Signup")
+const User=require("../../Model/User/user")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 const logincontroller={}
 
 logincontroller.login=(req,res)=>{
     const body=req.body
-    UserDB.findOne({email:body.email})
+    User.findOne({email:body.email})
           .then((user)=>{
             if(!user){
               res.json({errors : 'invalid email or password'})

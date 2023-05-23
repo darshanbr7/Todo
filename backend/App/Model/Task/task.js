@@ -1,17 +1,26 @@
 const mongoose=require("mongoose")
 const Schema=mongoose.Schema
 const task=new Schema({
-    user_id:{
+   
+    title:{
+        type:String,
+        required:true
+    },
+    description:{
+        type:String,
+        required:true
+    },
+    createdate:{
+        type:Date,
+        default:Date.now
+    },
+    duedate:{
+        type:Date,
+        required:true
+    },
+    category:{
         type:Schema.Types.ObjectId,
-        required:true
-    },
-    taskname:{
-        type:String,
-        required:true
-    },
-    details:{
-        type:String,
-        required:true
+        ref:'Catagery'
     }
 })
 

@@ -31,7 +31,7 @@ authMiddleware.auth=(req,res,next)=>{
     let token = req.headers.authorization;
    // const token = req.header('Authorization')
     
-    console.log(typeof(token))
+    
     if(!token){
      res.status(400).json({error:" Access Denied /unauthorized request"})
     }
